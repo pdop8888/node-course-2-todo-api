@@ -1,0 +1,1 @@
+mongod -dbpath C:\Users\na00035\mongo-data
