@@ -9,7 +9,7 @@ const {MongoClient, ObjectID} = require('mongodb');
 // var {name} = user;
 // console.log(name);
 
-MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, client) => {
+MongoClient.connect('mongodb://localhost:27017/TodoApp', { useNewUrlParser: true }, (err, client) => {
    if (err) {
        return console.log('Unable to connect to MongoDB server.');
    }
@@ -28,9 +28,9 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, client) => {
 //    });
 
 db.collection('Users').insertOne({
-    name: 'Mike',
-    age: 25,
-    location: '90277'
+    name: 'Bill',
+    age: 40,
+    location: '90503'
    }, (err, result) => {
     if (err) {
         return console.log('Unable to insert user', err);
@@ -38,6 +38,7 @@ db.collection('Users').insertOne({
 
     //console.log(JSON.stringify(result.ops, undefined, 2));
     console.log(result.ops[0]._id.getTimestamp());
+    //console.log(result.ops);
    });
 
    client.close();
