@@ -22,3 +22,8 @@ Appendix
 
 	2018-08-16T08:42:36.424-0700 I NETWORK  [initandlisten] waiting for connections
         on port 27017
+
+$ heroku config
+ »   Warning: heroku update available from 7.0.41 to 7.7.10
+=== morning-falls-73712 Config Vars
+MONGODB_URI: mongodb://heroku_kl2gjnqh:lhsonhp71ov8b5qnie6qm9u78t@ds123822.mlab.com:23822/heroku_kl2gjnqh
