@@ -47,7 +47,25 @@ app.get('/todos/:id', (req, res) => {
         }
         res.send({todo});
     }).catch((e) => {
-        res.status(404).send();
+        res.status(400).send();
+    });
+});
+
+app.delete('/todos/:id', (req, res) => {
+    // get the id
+    var id = req.params.id;
+    // validate the id or 404
+    if (!ObjectID.isValid(id)) {
+        return res.status(404).send();
+    }
+    // remove by id
+    Todo.findByIdAndRemove(id).then((todo) => {
+        if (!todo) {
+            return res.status(404).send();
+        }
+        res.send({todo});
+    }).catch((e) => {
+        res.status(400).send();
     });
 });
 
@@ -56,21 +74,3 @@ app.listen(port, ()  => {
 });
 
 module.exports = {app};
-
-// newTodo.save().then((doc) => {
-//     console.log('Saved todo', doc);
-// }, (e) => {
-//     console.log('unable to save todo');
-// });
-
-// var otherTodo = new Todo({
-//     text: 'Feed the cat',
-//     completed: true,
-//     completedAt: 123
-// });
-
-// otherTodo.save().then((doc) => {
-//     console.log(JSON.stringify(doc,undefined,2));
-// }, (e) => {
-//     console.log('unable to save otherTodo');
-// });
